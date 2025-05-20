@@ -8,19 +8,18 @@ with open("cert.pem", "rb") as f:
 encrypt_cipher = PKCS1_v1_5.new(server_pub_key)
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-server_address = ('127.0.0.1', 4445)
+server_address = ('10.34.4.214', 4445)
 
-print("UDP RSA Client started. Type messages:")
+print("UDP Client Started")
 
-while True:
-    msg = input("You: ")
-    if not msg:
-        continue
-
+msg = input("Pesan: ")
+if not msg:
+    print("No input provided. Exiting.")
+else:
     encrypted = encrypt_cipher.encrypt(msg.encode())
     sock.sendto(encrypted, server_address)
 
     data, _ = sock.recvfrom(4096)
     decrypted_b64 = data.decode()
 
-    print(f"Encrypted response (Base64):\n{decrypted_b64}\n")
+    print(f"Data terenkripsi (Base64):\n{decrypted_b64}\n")

@@ -1,7 +1,7 @@
 import socket
 import ssl
 
-HOST = '127.0.0.1'
+HOST = '10.34.4.214'
 PORT = 4444
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
